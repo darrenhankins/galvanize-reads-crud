@@ -5,7 +5,7 @@ module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: 'postgres://localhost/db-name'
+    connection: 'postgres://localhost/galvanize_reads'
   },
 
   production: {
