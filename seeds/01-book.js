@@ -3,8 +3,6 @@ exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('book').del()
     .then(function () {
-    // return knex.raw('TRUNCATE book; ALTER SEQUENCE book_id_seq restart with 7;')
-    // .then(function () {
       const book = [{
         id: 1,
         title: 'Python In A Nutshell',

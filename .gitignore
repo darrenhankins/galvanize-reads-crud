@@ -30,9 +30,11 @@ node_modules
 npm-debug.log
 
 # Google Drive creates these
+**/Icon?
+**/Icon
 */Icon?
-/Icon?
 */Icon
+/Icon?
 Icon
 
 # Database URL
