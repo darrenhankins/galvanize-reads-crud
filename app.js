@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var methodOverride = require('method-override');
 
 var index = require('./routes/index');
 var books = require('./routes/books');
@@ -26,10 +27,12 @@ app.use(cors({
    origin: 'http://localhost:8080',
    credentials: true
 }));
-
+app.use(methodOverride('_method'));
 
 app.use('/', index);
 app.use('/books', books);
+app.use('/:id', books);
+app.use('/:id/delete', books);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

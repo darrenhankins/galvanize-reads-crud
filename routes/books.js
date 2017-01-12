@@ -1,19 +1,71 @@
 const express = require('express');
 const router = express.Router();
-const Book = require('../db/book');
+const Books = require('../db/books');
 
-
-/* GET users listing. */
 router.get('/', function(req, res, next) {
-    Book.getAllBooks().then(books => {
+    Books.getAll().then(books => {
       if(books.length > 1) {
           res.json(books);
-          // console.log(res.json(books));
       } else {
         res.status(400);
         res.json(books);
       }
     });
+});
+
+router.get('/:id', function(req, res, next) {
+  if(!isNaN(req.params.id)) {
+    Books.getOne(req.params.id).then(book => {
+      if(book) {
+        res.json(book);
+      }else {
+        resError(res, 404, 'Book Not Found');
+      }
+    });
+  } else {
+    resError(res, 500, 'Invalid ID');
+  }
+});
+
+// router.delete('/:id/delete', function(req, res, next) {
+//   if(!isNaN(req.params.id)) {
+//     Books.deleteOne(req.params.id).then(book => {
+//       if(book) {
+//         console.log(res.json(book));
+//         res.json(book);
+//       }else {
+//         resError(res, 404, 'Book Not Found');
+//       }
+//     });
+//   } else {
+//     resError(res, 500, 'Invalid ID');
+//   }
+// });
+
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+    spots.deleteOne(id)
+        .then(() => {
+            res.json({
+              message: '👍🗑'
+            });
+        });
+});
+
+router.put('/:id/delete', function(req, res, next) {
+  console.log("here");
+  if(!isNaN(req.params.id)) {
+    Books.deleteOne(req.params.id).then(book => {
+      if(book) {
+        console.log(res.json(book));
+        res.json(book);
+      }else {
+        resError(res, 404, 'Book Not Found');
+      }
+    });
+  } else {
+    resError(res, 500, 'Invalid ID');
+  }
 });
 
 module.exports = router;

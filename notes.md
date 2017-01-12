@@ -30,6 +30,24 @@
 
 ---
 
+### RESTful Delete API
+
+- `$ npm install --save method-override`
+
+app.js
+
+```js
+var methodOverride = require('method-override');
+
+app.use(methodOverride('_method'));
+
+```
+- `method="post" action="?_method=delete"`
+
+---
+
 #### ORM's
   - objective.js
   - bookshelf
+
+---
