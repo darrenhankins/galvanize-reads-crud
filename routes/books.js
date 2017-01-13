@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
     });
 });
 
-
 // router.get('/:id', function(req, res, next) {
 //   if(!isNaN(req.params.id)) {
 //     Books.getOne(req.params.id).then(book => {
