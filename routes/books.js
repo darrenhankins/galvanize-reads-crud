@@ -13,19 +13,26 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/:id', function(req, res, next) {
-  if(!isNaN(req.params.id)) {
-    Books.getOne(req.params.id).then(book => {
-      if(book) {
-        res.json(book);
-      }else {
-        resError(res, 404, 'Book Not Found');
-      }
-    });
-  } else {
-    resError(res, 500, 'Invalid ID');
-  }
-});
+
+// router.get('/:id', function(req, res, next) {
+//   if(!isNaN(req.params.id)) {
+//     Books.getOne(req.params.id).then(book => {
+//       if(book) {
+//         res.json(book);
+//       }else {
+//         resError(res, 404, 'Book Not Found');
+//       }
+//     });
+//   } else {
+//     resError(res, 500, 'Invalid ID');
+//   }
+// });
+//
+// router.post('/', function(req, res, next){
+//   db.create(req.body).then(function(id){
+//     res.redirect('/'+id);
+//   })
+// })
 
 // router.delete('/:id/delete', function(req, res, next) {
 //   if(!isNaN(req.params.id)) {
@@ -42,30 +49,30 @@ router.get('/:id', function(req, res, next) {
 //   }
 // });
 
-router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    spots.deleteOne(id)
-        .then(() => {
-            res.json({
-              message: '👍🗑'
-            });
-        });
-});
+// router.delete('/:id', (req, res) => {
+//     const id = req.params.id;
+//     Books.deleteOne(id)
+//         .then(() => {
+//             res.json({
+//               message: 'deleted'
+//             });
+//         });
+// });
 
-router.put('/:id/delete', function(req, res, next) {
-  console.log("here");
-  if(!isNaN(req.params.id)) {
-    Books.deleteOne(req.params.id).then(book => {
-      if(book) {
-        console.log(res.json(book));
-        res.json(book);
-      }else {
-        resError(res, 404, 'Book Not Found');
-      }
-    });
-  } else {
-    resError(res, 500, 'Invalid ID');
-  }
-});
+// router.put('/:id/delete', function(req, res, next) {
+//   console.log("here");
+//   if(!isNaN(req.params.id)) {
+//     Books.deleteOne(req.params.id).then(book => {
+//       if(book) {
+//         console.log(res.json(book));
+//         res.json(book);
+//       }else {
+//         resError(res, 404, 'Book Not Found');
+//       }
+//     });
+//   } else {
+//     resError(res, 500, 'Invalid ID');
+//   }
+// });
 
 module.exports = router;
