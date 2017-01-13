@@ -13,19 +13,19 @@ router.get('/', function(req, res, next) {
     });
 });
 
-// router.get('/:id', function(req, res, next) {
-//   if(!isNaN(req.params.id)) {
-//     Books.getOne(req.params.id).then(book => {
-//       if(book) {
-//         res.json(book);
-//       }else {
-//         resError(res, 404, 'Book Not Found');
-//       }
-//     });
-//   } else {
-//     resError(res, 500, 'Invalid ID');
-//   }
-// });
+router.get('/:id', function(req, res, next) {
+  if(!isNaN(req.params.id)) {
+    Books.getOne(req.params.id).then(book => {
+      if(book) {
+        res.json(book);
+      }else {
+        resError(res, 404, 'Book Not Found');
+      }
+    });
+  } else {
+    resError(res, 500, 'Invalid ID');
+  }
+});
 //
 // router.post('/', function(req, res, next){
 //   db.create(req.body).then(function(id){

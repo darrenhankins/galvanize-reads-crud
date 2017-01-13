@@ -23,10 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:8080',
-  credentials: true
-}));
+// app.use(cors({
+//   origin: process.env.CLIENT_URL || 'http://localhost:8080',
+//   credentials: true
+// }));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -38,7 +38,7 @@ app.use(function(req, res, next) {
 
 app.use('/', index);
 app.use('/books', books);
-// app.use('/:id', books);
+app.use('/:id', books);
 // app.use('/:id/delete', books);
 
 // catch 404 and forward to error handler
